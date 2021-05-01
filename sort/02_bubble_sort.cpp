@@ -24,7 +24,7 @@ int main(){
     }
     //排序,从大到小，小的在后面，不满足就调换
     for (int i=1; i<=n-1; i++) { //n个数只要排n-1趟，最后一个就自己归位了
-        for (int j=1; j<=n-i; j++) {
+        for (int j=1; j<=n-i; j++) {       //why n-i?排好的i个元素有不管它了
             if (arr[j]<arr[j+1]){
                 double tmp = arr[j+1];
                 arr[j+1] = arr[j];
