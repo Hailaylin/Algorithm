@@ -30,7 +30,9 @@ int main(){
     }
     //从大到小输出
     for (int i=11; i>=0; i--){ //i,从数字0-11遍历
-        for (int j=array[i]; j>0; j--)       //标记每个数字输出多少次
+        //for (int j=array[i]; j>0; j--)       //标记每个数字输出多少次
+        //书中的逻辑，看起来比我实现的要清晰
+        for (int j=1; j<=array[i]; j++)
             cout << i << " " ;
     }
 }
