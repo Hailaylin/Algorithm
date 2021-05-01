@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"cfloat": "cpp",
+			"iostream": "cpp",
+			"ostream": "cpp",
+			"algorithm": "cpp"
+		}
+	}
+}

@@ -25,7 +25,7 @@ int main(){
     int n;
     cin >> n;   //输入要排序的数个数
     
-    double *arr = new double(n+1); //动态创建数组
+    double *arr = new double[n+1]; //动态创建数组
     //输入待排序数字
     for (int i=1; i<=n; i++) {
         cin >> arr[i];
