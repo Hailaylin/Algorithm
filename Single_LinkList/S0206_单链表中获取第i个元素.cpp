@@ -121,17 +121,15 @@ Status CreateList_R(LinkList &L, int n)
 Status GetElem(LinkList &L, int i, ElemType &e)
 { 
     LNode *p = L;
-    int j = 1;
+    int j = 0;
     //移动游标p到i所在节点
-    while(p->next && j<=i) {
+    while(p && j<i) //直到扫描到空节点，或j=i时p指向最后一个节点
+    {
         p = p->next;
         ++j;
     }
-    //判断i范围是否合法
-    if (j>i) {
-        printf("GetElemOverArrange!");
-        return ERROR;
-    }
+    //判断i范围是否合法：
+    if (!p || j>i)  return ERROR;
     //获取元素
     e = p->data;
     return OK;
