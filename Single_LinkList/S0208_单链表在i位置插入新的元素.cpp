@@ -1,32 +1,36 @@
 /*
- * @Description: 题目:单链表按值查找
+ * @Description: S0208   单链表在i位置插入新的元素
  * @Author: HailayLin
- * @Date: 2021-09-29 18:10:58
- * @LastEditTime: 2021-09-29 18:28:19
- * @FilePath: \Algorithm\Single_LinkList\S0207_单链表按值查找.cpp
+ * @Date: 2021-09-29 18:23:41
+ * @LastEditTime: 2021-09-29 18:36:56
+ * @FilePath: \Algorithm\Single_LinkList\S0208_单链表在i位置插入新的元素.cpp
  */
+
 /**
- * 题号：S0207        题目:单链表按值查找        得分：0  
-  
-作业提交截止时间：2022/1/20 0:00:00	 
- 	
-题目内容：
-在S0206的基础上修改程序，完成单链表按值查找的功能。
+ * 题目内容：
+在S0207的基础上修改程序，完成功能：在i位置插入新的元素。
 例1（第1、5行为输入）：
-wang li zhao
-1:wang
+zhao qian sun
+1:zhao
+2:qian
+3:sun
+2 li
+Insert success!
+1:zhao
 2:li
-3:zhao
-zhao
-Found!
+3:qian
+4:sun
 
 例2（第1、5行为输入）：
-gao li zhang
-1:gao
-2:li
-3:zhang
-wang
-Not found!
+zhao qian sun
+1:zhao
+2:qian
+3:sun
+6 li
+Error!
+1:zhao
+2:qian
+3:sun
  请注意，main()函数必须按如下所示编写：
 int main()
 {
@@ -34,14 +38,16 @@ int main()
     InitList(Lname); //初始化单链表 
     CreateList_R(Lname,3); //后插法创建单链表 
     showList(Lname); //单链表遍历 
+    int i;
     string s;
-    cin>>s;
-    if(LocateElem(Lname,s)!=NULL) cout<<"Found!"<<endl;
-    else cout<<"Not found!"<<endl;
+    cin>>i>>s;
+    if(ListInsert(Lname,i,s)!=NULL) cout<<"Insert success!"<<endl;
+    else cout<<"Error!"<<endl;
+    showList(Lname); //单链表遍历
     return 0;
 } 
-*/
 
+ */
 #include<iostream>
 #include<string>
 using namespace std;
@@ -147,15 +153,35 @@ LNode *LocateElem(LinkList &L, ElemType &e)
     return p;
 }
 
+
+//插入元素
+LNode *ListInsert(LinkList &L, int i, ElemType e)
+{
+    //遍历到元素的前一个
+    LinkList p = L->next;
+    int j=1;
+    while(p && j < i-1)
+        p = p->next;
+    if (!p || j > i-1) return p;
+    LNode *s = new LNode;
+    s->data = e;
+    s->next = p->next;
+    p->next = s;
+    return p;
+}
+
+
 int main()
 {
     LinkList Lname;
     InitList(Lname); //初始化单链表 
     CreateList_R(Lname,3); //后插法创建单链表 
     showList(Lname); //单链表遍历 
+    int i;
     string s;
-    cin>>s;
-    if(LocateElem(Lname,s)!=NULL) cout<<"Found!"<<endl;
-    else cout<<"Not found!"<<endl;
+    cin>>i>>s;
+    if(ListInsert(Lname,i,s)!=NULL) cout<<"Insert success!"<<endl;
+    else cout<<"Error!"<<endl;
+    showList(Lname); //单链表遍历
     return 0;
 } 
