@@ -2,7 +2,7 @@
  * @Description: 题目:单链表按值查找
  * @Author: HailayLin
  * @Date: 2021-09-29 18:10:58
- * @LastEditTime: 2021-09-29 18:18:23
+ * @LastEditTime: 2021-09-29 18:21:42
  * @FilePath: \Algorithm\Single_LinkList\S0207_单链表按值查找.cpp
  */
 /**
@@ -140,14 +140,11 @@ Status GetElem(LinkList &L, int i, ElemType &e)
 LNode *LocateElem(LinkList &L, ElemType &e)
 {
     //一个一个元素判断
-    LinkList p = L;
-    while(p)
-    {
+    LinkList p = L->next;
+    while(p && p->data!=e)
         p = p->next;
-        if (p->data == e) return p;
-    }
-    //没找到
-    return NULL;
+    //没找到,返回现状指针NULL；找到则指向那个元素的地址
+    return p;
 }
 
 int main()
