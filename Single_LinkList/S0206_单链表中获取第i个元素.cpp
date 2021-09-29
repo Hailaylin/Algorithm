@@ -114,13 +114,16 @@ Status CreateList_R(LinkList &L, int n)
         s->next = p;        //把当前元素的地址给前一个元素s的后驱指针
         s = p;              //把指向前一个元素的s变为指向当前元素
     }
+    //头结点的data存入节点数
+    L->data = n;
     return OK;
 }
 
 //获取元素
 Status GetElem(LinkList &L, int i, ElemType &e)
 {
-    //判断i范围是否合法，没有头结点
+    //判断i范围是否合法
+    if (i > L->data) printf("GetElemOverArrange!");
     
 }
 
