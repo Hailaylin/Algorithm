@@ -1,52 +1,9 @@
 /*
- * @Description: S0208   单链表在i位置插入新的元素
+ * @Description: 
  * @Author: HailayLin
- * @Date: 2021-09-29 18:23:41
- * @LastEditTime: 2021-09-29 18:53:37
- * @FilePath: \Algorithm\Single_LinkList\S0208_单链表在i位置插入新的元素.cpp
- */
-
-/**
- * 题目内容：
-在S0207的基础上修改程序，完成功能：在i位置插入新的元素。
-例1（第1、5行为输入）：
-zhao qian sun
-1:zhao
-2:qian
-3:sun
-2 li
-Insert success!
-1:zhao
-2:li
-3:qian
-4:sun
-
-例2（第1、5行为输入）：
-zhao qian sun
-1:zhao
-2:qian
-3:sun
-6 li
-Error!
-1:zhao
-2:qian
-3:sun
- 请注意，main()函数必须按如下所示编写：
-int main()
-{
-    LinkList Lname;
-    InitList(Lname); //初始化单链表 
-    CreateList_R(Lname,3); //后插法创建单链表 
-    showList(Lname); //单链表遍历 
-    int i;
-    string s;
-    cin>>i>>s;
-    if(ListInsert(Lname,i,s)!=NULL) cout<<"Insert success!"<<endl;
-    else cout<<"Error!"<<endl;
-    showList(Lname); //单链表遍历
-    return 0;
-} 
-
+ * @Date: 2021-09-29 18:44:24
+ * @LastEditTime: 2021-09-29 18:52:36
+ * @FilePath: \Algorithm\test.cpp
  */
 #include<iostream>
 #include<string>
@@ -169,7 +126,6 @@ LNode *ListInsert(LinkList &L, int i, ElemType e)
     p->next = s;
     return p;
 }
-
 
 int main()
 {
