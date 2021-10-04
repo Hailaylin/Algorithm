@@ -2,7 +2,7 @@
  * @Description: 双向链表的创建与遍历
  * @Author: HailayLin
  * @Date: 2021-10-04 19:17:19
- * @LastEditTime: 2021-10-04 20:11:37
+ * @LastEditTime: 2021-10-04 20:12:54
  * @FilePath: \Algorithm\Single_LinkList\S0210_双向链表的创建与遍历.cpp
  */
 
@@ -74,6 +74,7 @@ Status CreateDuL_H(DuLinkList &L, int n)
         q->next = p->next;
         p->next = q;
         q->prior = p;
+        // 如果是第一个节点，就不加；不是就加上
         if (q->next) q->next->prior = q;
     }
     L->data = n;
