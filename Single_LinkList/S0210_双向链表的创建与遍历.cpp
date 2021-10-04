@@ -2,7 +2,7 @@
  * @Description: 双向链表的创建与遍历
  * @Author: HailayLin
  * @Date: 2021-10-04 19:17:19
- * @LastEditTime: 2021-10-04 19:40:27
+ * @LastEditTime: 2021-10-04 20:11:37
  * @FilePath: \Algorithm\Single_LinkList\S0210_双向链表的创建与遍历.cpp
  */
 
@@ -54,7 +54,7 @@ typedef struct tarLNode
 //初始化双向链表
 Status InitDuLNode(DuLinkList &L)
 {
-    //生成节点
+    //生成空节点
     L = new DuLNode;
     //直接前驱和后继为空
     L->prior = NULL;
@@ -66,31 +66,33 @@ Status InitDuLNode(DuLinkList &L)
 //前插法创建双向链表
 Status CreateDuL_H(DuLinkList &L, int n)
 {
-    DuLinkList p;
+    DuLinkList p = L;
     for (int i=0; i<n; i++)
     {
         DuLinkList q = new DuLNode;
         cin >> q->data;
         q->next = p->next;
+        p->next = q;
         q->prior = p;
-        p = q;
+        if (q->next) q->next->prior = q;
     }
+    L->data = n;
     return OK;
 }
 
 //遍历双向链表
 Status show(DuLinkList &L)
 {
-    DuLinkList p = L;
+    DuLinkList p = L->next;
     int i = 1;
-    while (p->next)
+    while (p)
     {
         cout << i << ":" << p->data << endl;
         ++i;
+        p = p->next;
     }
     return OK;
 }
-
 
 int main()
 {
