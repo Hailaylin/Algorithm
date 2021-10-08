@@ -1,10 +1,11 @@
 /*
- * @Description: 
+ * @Description: 合并线性表的部分
  * @Author: HailayLin
- * @Date: 2021-09-29 18:44:24
- * @LastEditTime: 2021-10-08 23:03:20
- * @FilePath: \Algorithm\test.cpp
+ * @Date: 2021-10-08 22:22:21
+ * @LastEditTime: 2021-10-08 23:07:20
+ * @FilePath: \Algorithm\Single_LinkList\S0213_线性表合并.cpp
  */
+
 /**
 题目内容：
 在S0203的基础上修改程序，合并两个线性表，将Lb元素中不存在于La的元素合并。
