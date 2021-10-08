@@ -2,7 +2,7 @@
  * @Description: 双向链表的创建与遍历
  * @Author: HailayLin
  * @Date: 2021-10-04 19:17:19
- * @LastEditTime: 2021-10-04 20:12:54
+ * @LastEditTime: 2021-10-08 16:26:47
  * @FilePath: \Algorithm\Single_LinkList\S0210_双向链表的创建与遍历.cpp
  */
 
@@ -46,8 +46,8 @@ typedef int Status;
  */
 typedef struct tarLNode
 {
-    ElemType data;       //数据域
     tarLNode *prior;     //直接前驱
+    ElemType data;       //数据域
     tarLNode *next;      //直接后继
 }DuLNode, *DuLinkList;
 
