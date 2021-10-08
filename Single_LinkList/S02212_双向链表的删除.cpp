@@ -2,7 +2,7 @@
  * @Description: 双向链表的删除
  * @Author: HailayLin
  * @Date: 2021-10-08 21:06:04
- * @LastEditTime: 2021-10-08 21:43:28
+ * @LastEditTime: 2021-10-08 22:14:29
  * @FilePath: \Algorithm\Single_LinkList\S02212_双向链表的删除.cpp
  */
 
@@ -152,11 +152,16 @@ Status ListDelete_DuL(DuLinkList &L, int i)
     while( p && j < i )
     {
         p = p->next;
+        j++;
     }
     if ( NULL == p || j>i ) return ERROR;
-    //删除节点操作
-    p->prior->next = p->next;
-    p->next->prior = p->prior;
+    //删除节点操作注意尾结点
+    if (p->next != NULL)
+    {
+        p->prior->next = p->next;
+        p->next->prior = p->prior;
+    }
+    else p->prior->next = NULL;
     delete p;
     return OK;
 }
