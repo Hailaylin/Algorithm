@@ -2,7 +2,7 @@
  * @Description: 非递减线性有序表的合并
  * @Author: HailayLin
  * @Date: 2021-10-08 23:08:09
- * @LastEditTime: 2021-10-08 23:46:12
+ * @LastEditTime: 2021-10-08 23:49:53
  * @FilePath: \Algorithm\Single_LinkList\S0214_非递减线性有序表合并.cpp
  */
 
@@ -228,7 +228,7 @@ int compfunc(const void *a, const void *b)
 
 /**
  * @brief 创建非递减顺序表，输入无序，创建后有序
- * 
+ * 杜哥oj不能用qsort。。。
  * @param L 顺序表名称
  * @param n 顺序表元素个数
  * @return Status 
