@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: HailayLin
  * @Date: 2021-10-10 14:53:42
- * @LastEditTime: 2021-10-10 17:07:32
+ * @LastEditTime: 2021-10-10 18:22:05
  * @FilePath: \Algorithm\ccpc2021\2.cpp
  */
 
@@ -68,23 +68,15 @@ using namespace std;
 int a, b, c;
 int x0, x1, y0, y1, y2;
 
+/**
+ * @brief 抛物线计算y
+ * 
+ * @param x 
+ * @return int 
+ */
 int y(int x)
 {
     return a*x*x + b*x + c;
-}
-
-/**
- * @brief （x,y）点附近斜率，1向上，0向下；输入
- * 
- * @param xx 
- * @param yy 
- * @return true 
- * @return false 
- */
-bool k(int xx, int yy)
-{
-    if ( (y(xx) - y(xx+0.01)) / (0.01)) return true;
-    else false;
 }
 
 int main()
@@ -107,13 +99,8 @@ int main()
             // II情况：反弹侧击
             if ( y(x1) < y2 && y(x1) > y0 )
             {
-                //反弹后移动的x
-                int xf0 = x0- 2*(-b/ (2*a));
-                int h = -b/(2*a);
-                int k = (4*a*c - b*b)/(4*a);
-                int yf0 = a*(xf0-h)*(xf0-h) + k;
-                //1. 反弹后曲线进框，端点不行
-                if ( yf0 < y0) cout << "YES" << endl;
+                //1. 反弹后曲线进框，端点不行;用对称的观点看
+                if ( y(x1+(x1-x0)) < y0 ) cout << "YES" << endl;
                 else cout << "NO" << endl;
             }
             // 打中篮筐不行

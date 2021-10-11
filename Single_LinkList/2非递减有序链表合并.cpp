@@ -1,54 +1,9 @@
 /*
- * @Description: 非递减线性有序表的合并
+ * @Description: 
  * @Author: HailayLin
- * @Date: 2021-10-08 23:08:09
- * @LastEditTime: 2021-10-11 11:11:08
- * @FilePath: \Algorithm\Single_LinkList\S0214_非递减线性有序表合并.cpp
- */
-
-/**
- * @brief 题目内容：
-在S0213的基础上修改程序，完成两个非递减线性有序表的合并。
-例1（第1、6行为输入）：
-5 2 35
-Show La:
-2
-5
-35
-676 1 324 64
-Show Lb:
-1
-64
-324
-676
-After Merging:
-1
-2
-5
-35
-64
-324
-676
- 请注意，main()函数必须按如下所示编写：
-int main()
-{
-    //线性表的的初始化、插入、取值
-    Sqlist La,Lb,Lc; //用来存储学生《数据结构》成绩
-    InitList(La),InitList(Lb),InitList(Lc); //初始化线性表 
-    CreateList_Up(La,3); //创建非递减链表 
-    cout<<"Show La:"<<endl;
-    Show(La); //遍历线性表 
-    CreateList_Up(Lb,4);
-    cout<<"Show Lb:"<<endl;
-    Show(Lb);
-    MergeList_Sq(La,Lb,Lc); //将两个线性表元素合并到Lc(非递减)
-    cout<<"After Merging:"<<endl;
-    Show(Lc); 
-  
-    return 0;
-}
-
- * 
+ * @Date: 2021-10-11 11:12:26
+ * @LastEditTime: 2021-10-11 11:12:26
+ * @FilePath: \Algorithm\Single_LinkList\2非递减有序链表合并.cpp
  */
 
 #include<iostream>
@@ -278,10 +233,10 @@ int main()
     //线性表的的初始化、插入、取值
     Sqlist La,Lb,Lc; //用来存储学生《数据结构》成绩
     InitList(La),InitList(Lb),InitList(Lc); //初始化线性表 
-    CreateList_Up(La,3); //创建非递减链表 
+    CreateList_Up(La,4); //创建非递减链表 
     cout<<"Show La:"<<endl;
     Show(La); //遍历线性表 
-    CreateList_Up(Lb,4);
+    CreateList_Up(Lb,7);
     cout<<"Show Lb:"<<endl;
     Show(Lb);
     MergeList_Sq(La,Lb,Lc); //将两个线性表元素合并到Lc(非递减)

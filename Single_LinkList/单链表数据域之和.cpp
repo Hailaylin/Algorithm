@@ -1,52 +1,13 @@
-/*
- * @Description: 单链表删除
- * @Author: HailayLin
- * @Date: 2021-10-04 18:58:09
- * @LastEditTime: 2021-10-11 10:35:15
- * @FilePath: \Algorithm\Single_LinkList\S0209_单链表删除.cpp
- */
-
 /**
- * 题目内容：
-在S0208的基础上进行修改，完成单链表删除第i个元素的功能。
-例1（第1、5行为输入）：
-aaa bbb ccc
-1:aaa
-2:bbb
-3:ccc
-2
-Delete success!
-1:aaa
-2:ccc
-
-例2（第1、5行为输入）：
-aaa bbb ccc
-1:aaa
-2:bbb
-3:ccc
-5
-Error!
-1:aaa
-2:bbb
-3:ccc
-
- 请注意，main()函数必须按如下所示编写：
-int main()
-{
-    LinkList Lname;
-    InitList(Lname); //初始化单链表 
-    CreateList_R(Lname,3); //后插法创建单链表 
-    showList(Lname); //单链表遍历 
-    int i;
-    cin>>i;
-    if(ListDelete(Lname,i)!=NULL) cout<<"Delete success!"<<endl;
-    else cout<<"Error!"<<endl;
-    showList(Lname); //单链表遍历
-    return 0;
-} 
+ * @file 单链表数据域之和.cpp
+ * @author HailayLin (hailay@qq.com)
+ * @brief 
+ * @version 0.1
+ * @date 2021-10-11
+ * 
+ * @copyright Copyright (c) 2021  Hailay.site & Xihe.ai
  * 
  */
-
 #include<iostream>
 #include<string>
 using namespace std;
@@ -54,7 +15,7 @@ using namespace std;
 #define OK 1
 #define ERROR 0
 
-typedef string ElemType;
+typedef int ElemType;
 typedef int Status;
 
 //单链表节点
@@ -112,7 +73,7 @@ Status CreateList_R(LinkList &L, int n)
     for (int i=1; i<=n; i++)
     {
         LNode *p = new LNode;//要插入的新节点p
-        string name;
+        ElemType name;
         cin >> name;
         p->data = name;
         //插入到头结点后,剩下的插入到下一个节点后 （这个是自己写的，写前插的时候想的是后插写的是前插qaq😂）
@@ -197,16 +158,26 @@ LNode *ListDelete(LinkList L, int i)
     return p;
 }
 
+
+int sum(LinkList &L)
+{
+    LinkList p = L->next;
+    ElemType total=0;
+    while (p != NULL)
+    {
+        total+=p->data;
+        p = p->next;
+    }
+    return total;
+}
+
+
 int main()
 {
     LinkList Lname;
     InitList(Lname); //初始化单链表 
     CreateList_R(Lname,3); //后插法创建单链表 
     showList(Lname); //单链表遍历 
-    int i;
-    cin>>i;
-    if(ListDelete(Lname,i)!=NULL) cout<<"Delete success!"<<endl;
-    else cout<<"Error!"<<endl;
-    showList(Lname); //单链表遍历
+    cout << "Sum = " << sum(Lname) << endl;
     return 0;
 }
