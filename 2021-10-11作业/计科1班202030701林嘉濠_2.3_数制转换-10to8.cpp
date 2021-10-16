@@ -1,55 +1,20 @@
 /*
- * @Description: 链栈
+ * @Description: 数值转换，将十进制转换为八进制
  * @Author: HailayLin
- * @Date: 2021-10-11 11:15:28
- * @LastEditTime: 2021-10-11 15:52:02
- * @FilePath: \Algorithm\stack\S0303_链栈入栈出栈.cpp
- */
-
-/**
- *  	
-题目内容：
-链栈的入栈与出栈。
-部分代码如图所示。
-例（前3行为输入）：
-3Hebei
-Tangshan fengrun
-Handan wuan
-Handan wuan
-Tangshan fengrun
-Hebei
-
- 请注意，main()函数必须按如下所示编写：
-int main()
-{
-    LinkStack Ls;
-    InitStack(Ls); //初始化链栈 
-    int n;
-    string s;
-    cin>>n;
-    for(int i=0; i<n; i++)
-    {
-        getline(cin,s);
-        Push(Ls,s);     //入栈 
-    }
-    
-    while(!StackEmpty(Ls))
-    {
-        cout<<GetTop(Ls)<<endl; //取栈顶元素 
-        Pop(Ls);     //出栈 
-    }
-}
+ * @Date: 2021-10-11 19:09:51
+ * @LastEditTime: 2021-10-11 19:33:39
+ * @FilePath: \Algorithm\stack\数制转换-10to8.cpp
  */
 
 #include<iostream>
-#include<string>
+#include<stdlib.h>
 using namespace std;
 
 #define MAXSIZE 100
 #define OK 1
 #define ERROR 0
 typedef int Status;
-typedef string SElemType;
+typedef int SElemType;
 
 /**
  * @brief 链栈节点
@@ -138,18 +103,22 @@ int main()
 {
     LinkStack Ls;
     InitStack(Ls); //初始化链栈 
-    int n;
-    string s;
-    cin>>n;
-    for(int i=0; i<n; i++)
+    cout << "请输入一个数,将其用栈的方式从十进制转换为8进制" << endl;
+    int num;
+    cin >> num;
+    int yu;
+    while (num!=0)
     {
-        getline(cin,s);
-        Push(Ls,s);     //入栈 
+        yu = num%8;
+        Push(Ls,yu);
+        num = num / 8;  //整数求商，得无余数的整数值
+        yu = 0;
     }
-    
+
+    cout << "其八进制数为:" << endl;
     while(!StackEmpty(Ls))
     {
-        cout<<GetTop(Ls)<<endl; //取栈顶元素 
+        cout<<GetTop(Ls); //取栈顶元素 
         Pop(Ls);     //出栈 
     }
 }

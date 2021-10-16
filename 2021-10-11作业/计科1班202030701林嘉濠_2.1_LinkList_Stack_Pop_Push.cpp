@@ -2,8 +2,8 @@
  * @Description: 链栈
  * @Author: HailayLin
  * @Date: 2021-10-11 11:15:28
- * @LastEditTime: 2021-10-11 15:52:02
- * @FilePath: \Algorithm\stack\S0303_链栈入栈出栈.cpp
+ * @LastEditTime: 2021-10-11 19:52:00
+ * @FilePath: \Algorithm\2021-10-11作业\计科1班202030701林嘉濠_2.1_LinkList_Stack_Pop_Push.cpp
  */
 
 /**
@@ -42,14 +42,13 @@ int main()
  */
 
 #include<iostream>
-#include<string>
 using namespace std;
 
 #define MAXSIZE 100
 #define OK 1
 #define ERROR 0
 typedef int Status;
-typedef string SElemType;
+typedef int SElemType;
 
 /**
  * @brief 链栈节点
@@ -139,17 +138,19 @@ int main()
     LinkStack Ls;
     InitStack(Ls); //初始化链栈 
     int n;
-    string s;
+    int s;
+    cout << "输入n个量压入栈:" << endl;
     cin>>n;
     for(int i=0; i<n; i++)
     {
-        getline(cin,s);
+        cin >> s;
         Push(Ls,s);     //入栈 
     }
     
     while(!StackEmpty(Ls))
     {
-        cout<<GetTop(Ls)<<endl; //取栈顶元素 
+        cout<<GetTop(Ls) << " "; //取栈顶元素 
         Pop(Ls);     //出栈 
     }
+    cout << endl;
 }
