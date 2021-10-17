@@ -2,7 +2,7 @@
  * @Description: 非递减线性有序表的合并
  * @Author: HailayLin
  * @Date: 2021-10-08 23:08:09
- * @LastEditTime: 2021-10-11 11:11:08
+ * @LastEditTime: 2021-10-17 15:34:09
  * @FilePath: \Algorithm\Single_LinkList\S0214_非递减线性有序表合并.cpp
  */
 
@@ -226,6 +226,26 @@ int compfunc(const void *a, const void *b)
     return ( *(int *)a - *(int *)b );
 }
 
+Status SqListSort_Up(Sqlist &L)
+{
+    int n = L.length;
+    ElemType *a = L.elem;
+    for(int i=0; i<n-1; i++)
+    {
+        for(int j=0; j<n-i-1; j++)
+        {
+            if( a[j] > a[j+1])
+            {
+                ElemType temp = a[j];
+                a[j] = a[j+1];
+                a[j+1] = temp;
+            }
+        }
+    }
+    return OK;
+}
+
+
 /**
  * @brief 创建非递减顺序表，输入无序，创建后有序
  * 杜哥oj不能用qsort。。。
@@ -238,7 +258,7 @@ Status CreateList_Up(Sqlist &L, int n)
     //1. 输入元素
     CreateList(L, n);
     //2. 表排序
-    qsort(L.elem, L.length, sizeof(int), compfunc);
+    SqListSort_Up(L);
     return OK;
 }
 
