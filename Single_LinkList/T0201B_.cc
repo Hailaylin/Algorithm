@@ -2,7 +2,7 @@
  * @Description: T0201B_链表合并（有重复数据）
  * @Author: HailayLin
  * @Date: 2021-10-22 18:15:10
- * @LastEditTime: 2021-10-22 19:33:10
+ * @LastEditTime: 2021-10-22 20:19:45
  * @FilePath: \Algorithm\Single_LinkList\T0201B_.cc
  */
 
@@ -93,7 +93,7 @@ SingleList<T>::SingleList()
 {
     head = new ListNode<T>;
     head->data = -1;
-    head->next = NULL;
+    head->next = nullptr;
 }
 
 template<typename T>
@@ -111,14 +111,14 @@ SingleList<T>::~SingleList()
 template<typename T>
 Status SingleList<T>::show()
 {
-    if(head->next == NULL)
+    if(head->next == nullptr)
     {
         cout << "Empty!" << endl;
         return ERROR;
     }
     ListNode<T> *p = head->next;
     cout << "There are " << this->length << " scores in the Linklist:" << endl;
-    while(p != NULL)
+    while(p != nullptr)
     {
         cout << p->data << endl; 
         p = p->next;
@@ -138,28 +138,57 @@ Status SingleList<T>::Insert(T elem)
 {
     ListNode<T> *p = head;
     // 1. 一开始有元素，比较大小，比elem小和大的中间插入
-    while(p->next != NULL)
+    while(p->next != nullptr)
     {
         if(p->data <= elem && p->next->data >= elem)
         {
             ListNode<T> *s = new ListNode<T>;
-            s->next = NULL;
+            s->next = nullptr;
             s->data = elem;
             s->next = p->next;
             p->next = s;
-            this->length++;
+            length++;
             return OK;
         }
         p = p->next;
     }
     // 2. 一开始没有元素或者elem比所有元素都要大，从后面接入
-    if(p->next == NULL)
+    if(p->next == nullptr)
     {
         ListNode<T> *s = new ListNode<T>;
-        s->next = NULL;
+        s->next = nullptr;
         s->data = elem;
         p->next = s;
-        this->length++;
+        length++;
+    }
+    return OK;
+}
+
+template<typename T>
+Status SingleList<T>::MergeLink(SingleList<T> sb)
+{
+    // 0. 长度变为二者之和
+    length = sb.length + length;
+    // 1. a表不为空，把b按照顺序插入
+    ListNode<T> *pa = head;
+    ListNode<T> *pb = sb.head->next;
+    sb.head = nullptr;
+    ListNode<T> *s;
+    while(pa->next != nullptr && pb != nullptr)
+    {
+        if(pa->data <= pb->data && pb->data <= pa->next->data)
+        {
+            s = pb;
+            pb = pb->next;
+            s->next = pa->next;
+            pa->next = s;
+        }
+        else pa = pa->next;
+    }
+    if(pa->next == nullptr && pb != nullptr)
+    {
+        pa->next = pb;
+        pb = nullptr;
     }
     return OK;
 }
@@ -175,7 +204,7 @@ int main()
     for(int i=0; i<4; i++)
     {         cin>>s;         sb.Insert(s);     } //构造可有重复元素的非递减单链表sa 
     sb.show();
-    // sa.MergeLink(sb); //合并两个链表 
+    sa.MergeLink(sb); //合并两个链表 
     sa.show();
     return 0;
 }
