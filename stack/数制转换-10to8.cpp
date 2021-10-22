@@ -1,8 +1,8 @@
 /*
- * @Description: 数值转换，将十进制转换为八进制
+ * @Description: 数值转换，将十进制转换为八进制，S0307
  * @Author: HailayLin
  * @Date: 2021-10-11 19:09:51
- * @LastEditTime: 2021-10-11 19:33:39
+ * @LastEditTime: 2021-10-22 20:56:06
  * @FilePath: \Algorithm\stack\数制转换-10to8.cpp
  */
 
@@ -99,14 +99,35 @@ SElemType Pop(LinkStack &S)
     return e;
 }
 
-int main()
+// int main()
+// {
+//     LinkStack Ls;
+//     InitStack(Ls); //初始化链栈 
+//     cout << "请输入一个数,将其用栈的方式从十进制转换为8进制" << endl;
+//     int num;
+//     cin >> num;
+//     int yu;
+//     while (num!=0)
+//     {
+//         yu = num%8;
+//         Push(Ls,yu);
+//         num = num / 8;  //整数求商，得无余数的整数值
+//         yu = 0;
+//     }
+
+//     cout << "其八进制数为:" << endl;
+//     while(!StackEmpty(Ls))
+//     {
+//         cout<<GetTop(Ls); //取栈顶元素 
+//         Pop(Ls);     //出栈 
+//     }
+// }
+
+Status conversion(int num)
 {
+    int yu;
     LinkStack Ls;
     InitStack(Ls); //初始化链栈 
-    cout << "请输入一个数,将其用栈的方式从十进制转换为8进制" << endl;
-    int num;
-    cin >> num;
-    int yu;
     while (num!=0)
     {
         yu = num%8;
@@ -115,10 +136,19 @@ int main()
         yu = 0;
     }
 
-    cout << "其八进制数为:" << endl;
     while(!StackEmpty(Ls))
     {
         cout<<GetTop(Ls); //取栈顶元素 
         Pop(Ls);     //出栈 
     }
+    cout << endl;
+    return OK;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    conversion(n); //十进制n转换为八进制 
+    cout<<endl;
+    return 0;
 }
