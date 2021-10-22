@@ -2,7 +2,7 @@
  * @Description:顺序栈操作
  * @Author: HailayLin
  * @Date: 2021-10-16 15:36:58
- * @LastEditTime: 2021-10-16 15:54:58
+ * @LastEditTime: 2021-10-16 16:41:38
  * @FilePath: \Algorithm\stack\S0302_顺序栈操作.cpp
  */
 /**
@@ -85,7 +85,8 @@ Status InitStack(SqStack &S)
 
 Status Push(SqStack &S, SElemType &e)
 {
-    // 存入元素，向后移一位即可
+    // 存入元素，向后移一位即可，先判断栈有无满
+    if (S.base == S.top && S.Stacksize != 0) return ERROR;
     *S.top++ = e;
     S.Stacksize++;
     return OK;
@@ -105,6 +106,7 @@ SElemType GetTop(SqStack S)
 Status Pop(SqStack &S)
 {
     // 栈顶下移，元素置零
+    if (S.base == S.top && S.Stacksize == 0) return ERROR;
     *S.top-- = 0;
     S.Stacksize--;
     return OK;
