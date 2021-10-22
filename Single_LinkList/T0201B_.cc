@@ -2,7 +2,7 @@
  * @Description: T0201B_链表合并（有重复数据）
  * @Author: HailayLin
  * @Date: 2021-10-22 18:15:10
- * @LastEditTime: 2021-10-22 20:19:45
+ * @LastEditTime: 2021-10-22 20:21:59
  * @FilePath: \Algorithm\Single_LinkList\T0201B_.cc
  */
 
@@ -172,7 +172,7 @@ Status SingleList<T>::MergeLink(SingleList<T> sb)
     // 1. a表不为空，把b按照顺序插入
     ListNode<T> *pa = head;
     ListNode<T> *pb = sb.head->next;
-    sb.head = nullptr;
+    sb.head = nullptr;      //这行还不能删掉，否则输出乱码？
     ListNode<T> *s;
     while(pa->next != nullptr && pb != nullptr)
     {
