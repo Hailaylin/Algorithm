@@ -2,7 +2,7 @@
  * @Description: T0201B_链表合并（有重复数据）
  * @Author: HailayLin
  * @Date: 2021-10-22 18:15:10
- * @LastEditTime: 2021-10-22 20:32:09
+ * @LastEditTime: 2021-10-22 21:03:52
  * @FilePath: \Algorithm\Single_LinkList\T0201B_.cc
  */
 
@@ -92,7 +92,7 @@ template<typename T>
 SingleList<T>::SingleList()
 {
     head = new ListNode<T>;
-    head->data = -1;
+    head->data = -2147483648;
     head->next = NULL;
     length = 0;
 }
