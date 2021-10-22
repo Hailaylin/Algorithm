@@ -2,7 +2,7 @@
  * @Description: T0201B_链表合并（有重复数据）
  * @Author: HailayLin
  * @Date: 2021-10-22 18:15:10
- * @LastEditTime: 2021-10-22 20:27:23
+ * @LastEditTime: 2021-10-22 20:32:09
  * @FilePath: \Algorithm\Single_LinkList\T0201B_.cc
  */
 
@@ -166,6 +166,15 @@ Status SingleList<T>::Insert(T elem)
     return OK;
 }
 
+/**
+ * @brief 合并有序链表，结果链表仍使用原来两个链表的存储空间，
+ * 不另外占用其他的存储空间；表中允许有重复的数据
+ * 
+ * 方法：类似Insert函数里面，找合适的区间后插入
+ * @tparam T 
+ * @param sb 
+ * @return Status 
+ */
 template<typename T>
 Status SingleList<T>::MergeLink(SingleList<T> sb)
 {
@@ -187,6 +196,7 @@ Status SingleList<T>::MergeLink(SingleList<T> sb)
         }
         else pa = pa->next;
     }
+    // 2. a为空，b不为空，sb接到sa后面
     if(pa->next == NULL && pb != NULL)
     {
         pa->next = pb;
