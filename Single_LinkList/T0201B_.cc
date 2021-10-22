@@ -2,7 +2,7 @@
  * @Description: T0201B_链表合并（有重复数据）
  * @Author: HailayLin
  * @Date: 2021-10-22 18:15:10
- * @LastEditTime: 2021-10-22 19:15:42
+ * @LastEditTime: 2021-10-22 19:33:10
  * @FilePath: \Algorithm\Single_LinkList\T0201B_.cc
  */
 
@@ -72,6 +72,8 @@ template<typename T>
 class SingleList
 {
 public:
+    // 链表元素个数,初始化为0
+    int length = 0;
     // 单链表初始化
     SingleList();
     // 链表逐个删除
@@ -91,7 +93,7 @@ SingleList<T>::SingleList()
 {
     head = new ListNode<T>;
     head->data = -1;
-    head->next = nullptr;
+    head->next = NULL;
 }
 
 template<typename T>
@@ -109,16 +111,17 @@ SingleList<T>::~SingleList()
 template<typename T>
 Status SingleList<T>::show()
 {
-    if(head == nullptr)
+    if(head->next == NULL)
     {
         cout << "Empty!" << endl;
         return ERROR;
     }
     ListNode<T> *p = head->next;
-    while(p)
+    cout << "There are " << this->length << " scores in the Linklist:" << endl;
+    while(p != NULL)
     {
         cout << p->data << endl; 
-        p++;
+        p = p->next;
     }
     return OK;
 }
@@ -133,27 +136,30 @@ Status SingleList<T>::show()
 template<typename T>
 Status SingleList<T>::Insert(T elem)
 {
-    int i, j;
     ListNode<T> *p = head;
     // 1. 一开始有元素，比较大小，比elem小和大的中间插入
-    while(p->next)
+    while(p->next != NULL)
     {
         if(p->data <= elem && p->next->data >= elem)
         {
             ListNode<T> *s = new ListNode<T>;
-            s->next = nullptr;
+            s->next = NULL;
+            s->data = elem;
             s->next = p->next;
             p->next = s;
+            this->length++;
+            return OK;
         }
         p = p->next;
     }
-    return OK;
     // 2. 一开始没有元素或者elem比所有元素都要大，从后面接入
-    if(p->next == nullptr)
+    if(p->next == NULL)
     {
         ListNode<T> *s = new ListNode<T>;
-        s->next = nullptr;
+        s->next = NULL;
+        s->data = elem;
         p->next = s;
+        this->length++;
     }
     return OK;
 }
