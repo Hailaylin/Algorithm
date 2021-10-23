@@ -2,7 +2,7 @@
  * @Description: 链表逆转
  * @Author: HailayLin
  * @Date: 2021-10-23 14:40:36
- * @LastEditTime: 2021-10-23 18:32:16
+ * @LastEditTime: 2021-10-23 18:38:06
  * @FilePath: \Algorithm\Single_LinkList\T0207_.cpp
  */
 
@@ -204,7 +204,11 @@ Status Inverse(LinkList &L)
     LinkList p_latest = L;
     while(head != p)
     {
-
+        p_pre->next = NULL; // 1. 断联
+        p->next = p_latest->next; // 2. 连接下一个
+        p_latest->next = p; // 3. 连接上一个
+        p_pre = p_latest;   // 4. p_pre 移动到前一个
+        p_latest = p_latest->next;   // 5. p_latest 前移
         while(p->next)
         {
             p_pre = p_pre->next;
