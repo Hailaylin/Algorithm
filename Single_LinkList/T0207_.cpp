@@ -2,8 +2,8 @@
  * @Description: 链表逆转
  * @Author: HailayLin
  * @Date: 2021-10-23 14:40:36
- * @LastEditTime: 2021-10-23 15:03:54
- * @FilePath: \Algorithm\Single_LinkList\T0207_链表逆转.cpp
+ * @LastEditTime: 2021-10-23 16:50:56
+ * @FilePath: \Algorithm\Single_LinkList\T0207_.cpp
  */
 
 /**
@@ -191,23 +191,31 @@ LNode *ListDelete(LinkList L, int i)
 
 Status Inverse(LinkList &L)
 {
-    // 1. 获取表尾元素地址tail，生成始终指向表尾部的指针p
+    LinkList head = L->next;
     LinkList p = L->next;
+    LinkList p_pre = L;
+    // 1. 找到最后的那个
     while(p->next)
     {
+        p_pre = p_pre->next;
         p = p->next;
     }
-    LinkList tail_first, tail_latest;
-    tail_first = tail_latest = p;
-    p = NULL;
-    // 2. 将首元节点取出，插入到p后，p移动到最后，直到tail = L->next
-    while(L->next != tail_first)
+    // 2. 逐个调到最后
+    LinkList p_latest = L;
+    while(head != p)
     {
+        p->next = p_latest;
+        p_latest->next = p;
+        p_pre->next = NULL;
+        // 初始化俩指针，从前往后找
+        p_latest = p;
+        p_pre = L;
         p = L->next;
-        L->next = p->next;
-        tail_latest->next = p;
-        p->next = NULL;
-        tail_latest = tail_latest->next;
+        while(p->next)
+        {
+            p_pre = p_pre->next;
+            p = p->next;
+        }
     }
     return OK;
 }
