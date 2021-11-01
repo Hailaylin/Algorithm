@@ -7,6 +7,17 @@
         "*.tcc": "cpp",
         "string": "cpp",
         "string_view": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "atomic": "cpp",
+        "cstddef": "cpp",
+        "cwchar": "cpp",
+        "memory": "cpp",
+        "memory_resource": "cpp",
+        "type_traits": "cpp",
+        "istream": "cpp",
+        "new": "cpp",
+        "stdexcept": "cpp",
+        "system_error": "cpp",
+        "utility": "cpp"
     }
 }
