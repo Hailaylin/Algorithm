@@ -2,7 +2,7 @@
  * @Description: 实验3 先序遍历创建二叉树
  * @Author: HailayLin
  * @Date: 2021-11-01 10:27:52
- * @LastEditTime: 2021-11-01 10:41:45
+ * @LastEditTime: 2021-11-01 10:46:42
  * @FilePath: \Algorithm\exp3.cc
  */
 
@@ -19,9 +19,6 @@ typedef struct BiTNode{
     struct BiTNode *lchild, *rchild;
 }BiTNode, *BiTree;
 
-// 二叉树节点个数
-int node_num = 0;
-
 // 先序遍历创建二叉树
 void CreateBiTree(BiTree &T)
 {
@@ -31,7 +28,6 @@ void CreateBiTree(BiTree &T)
     else {
         T = new BiTNode;
         T->data = ch;
-        node_num++;
         CreateBiTree(T->lchild);
         CreateBiTree(T->rchild);
     }
@@ -80,6 +76,13 @@ int Depth(BiTree &T)
     }
 }
 
+// 二叉树节点个数
+int NodeCount(BiTree &T)
+{
+    if(T == NULL) return 0;
+    else return NodeCount(T->lchild)+NodeCount(T->rchild)+1;
+}
+
 int main()
 {
     BiTree T;
@@ -90,7 +93,7 @@ int main()
     InOrderTraverse(T); cout<<endl;//中序遍历
     cout << "后序遍历输出:" << endl; 
     PostOrderTraverse(T); cout<<endl;//后序遍历
-    cout << "二叉树节点个数:" << node_num << endl;
+    cout << "二叉树节点个数:" << NodeCount(T) << endl;
     cout << "二叉树深度个数:" << Depth(T) << endl;
     
     return 0;
