@@ -2,7 +2,7 @@
  * @Description: Sequence in threaded binary tree
  * @Author: HailayLin
  * @Date: 2021-11-01 11:32:15
- * @LastEditTime: 2021-11-01 11:42:01
+ * @LastEditTime: 2021-11-01 21:19:14
  * @FilePath: \Algorithm\BiTree\S0503_SequenceThreadedBinaryTree.cc
  */
 /**
@@ -56,10 +56,26 @@ void CreateBiThrTree(BiThrTree &T)
     }
 }
 
+BiThrTree pre = NULL;
 //不带头结点的中序线索化 
 void InThreading(BiThrTree &T)
 {
-    
+    if(T)
+    {
+        InThreading(T->lchild);
+        if(T->lchild == NULL)
+        {
+            T->LTag = 1;
+            T->lchild = pre;
+        }
+        if(pre->rchild == NULL)
+        {
+            pre->RTag = 1;
+            pre->rchild = T;
+        }
+        pre = T;
+        InThreading(T->rchild);
+    }
 }
 
 //遍历中序线索二叉树 
