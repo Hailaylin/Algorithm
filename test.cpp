@@ -2,7 +2,7 @@
  * @Description: 测试中文编码
  * @Author: HailayLin
  * @Date: 2021-09-29 18:44:24
- * @LastEditTime: 2021-10-18 16:30:11
+ * @LastEditTime: 2021-11-06 14:42:11
  * @FilePath: \Algorithm\test.cpp
  */
 
@@ -10,12 +10,32 @@
 #include<string>
 using namespace std;
 
+#define MAX 5
+
 int main()
 {
-    string chs_test_str = "中文测试";
-    cout << chs_test_str << endl;
-    string chs_str_input;
-    printf("输入：");
-    cin >> chs_str_input;
-    cout << "输出：" << chs_str_input;
+    int n,m,a[MAX][MAX];
+    // 矩阵建立初始化
+    for(int i=0; i<MAX; i++)
+        for(int j=0; j<MAX; j++)
+        {
+            a[i][j]=0;
+        }
+    // 矩阵输入边
+    for(int i=0; i<MAX; i++)
+    {
+        cin >> n >> m;
+        a[n][m]=1;
+        a[m][n]=1;
+    }
+    // 矩阵输出
+    for(int i=0; i<MAX; i++)
+    {
+        for(int j=0; j<MAX; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+        
 }
