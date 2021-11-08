@@ -2,7 +2,7 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 19:01:06
+ * @LastEditTime: 2021-11-08 19:03:58
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
  */
 
@@ -45,7 +45,7 @@ void Select(HuffmanTree &HT, int len, int &s1, int &s2)
             s2 = s1;
             s1 = i;
         }
-        if(min1 < weight && min2 > weight){ // 相同的权值29不会被选到min2，问题出在这
+        else if(min1 <= weight && min2 > weight){ // 相同的权值29不会被选到min2，问题出在这
             min2 = weight;
             s2 = i;
         }
