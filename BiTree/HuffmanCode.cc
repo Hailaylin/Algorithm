@@ -2,7 +2,7 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 11:46:19
+ * @LastEditTime: 2021-11-08 17:46:50
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
  */
 
@@ -22,22 +22,26 @@ typedef struct HTNode{
  * @param s1 返回最小的数组下标
  * @param s2 返回第二小的数组下标
  */
-void Select2MinHMTree(HuffmanTree &HT, int n, int s1, int s2)
+void Select2MinHMTree(HuffmanTree &HT, int len, int s1, int s2)
 {
-    s1 = s2 = 0;
-    for(int i=1; i<n; i++)
+    s1 = s2 = 1;
+    int min1, min2;
+    min1 = min2 = 1000;
+    for(int i=1; i<=len; i++)
     {
         int weight = HT[i].weight;
         if(HT[i].parent==0)
         {
-            if(weight < HT[s2].weight)
+            if(weight < min2)
             {
-                if(weight > HT[s1].weight)
+                if(weight > min1)
                 {
                     s2 = i;
+                    min2 = weight;
                 }
-                if(weight <= HT[s1].weight)
+                if(weight <= min1)
                 {
+                    min1 = weight;
                     s2 = s1;
                     s1 = i;
                 }
@@ -86,7 +90,7 @@ void ShowHMTree(HuffmanTree &HT,int n)
     // 遍历输出表的值
     for(int i=0; i<=2*n+1; i++)
     {
-        cout << "i=" << i << "\tParent=" << HT[i].parent << "\tLeftChild=" <<HT[i].lchild << "\tRightChild=" << HT[i].rchild << endl;
+        cout << "i=" << i << "\tWeight=" << HT[i].weight << "\tParent=" << HT[i].parent << "\tLeftChild=" <<HT[i].lchild << "\tRightChild=" << HT[i].rchild << endl;
     }
 }
 
