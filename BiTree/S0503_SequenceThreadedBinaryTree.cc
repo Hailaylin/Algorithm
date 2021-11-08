@@ -2,14 +2,14 @@
  * @Description: Sequence in threaded binary tree
  * @Author: HailayLin
  * @Date: 2021-11-01 11:32:15
- * @LastEditTime: 2021-11-01 21:19:14
+ * @LastEditTime: 2021-11-07 14:08:39
  * @FilePath: \Algorithm\BiTree\S0503_SequenceThreadedBinaryTree.cc
  */
 /**
- * 题号：S0503        题目:中序线索二叉树        得分：0  
-  
-作业提交截止时间：2022/1/20 0:00:00	 
- 	
+ * 题号：S0503        题目:中序线索二叉树        得分：0
+
+作业提交截止时间：2022/1/20 0:00:00
+
 题目内容：
 在S0502的基础修改程序，中序线索化二叉树并遍历。
 
@@ -21,10 +21,10 @@ CBDAG
 int main()
 {
     BiThrTree T;
-    CreateBiThrTree(T);//先序遍历顺序建立二叉链表 
-    InThreading(T); //不带头结点的中序线索化 
-    InOrderTraverse_Thr(T); //遍历中序线索二叉树 
-        
+    CreateBiThrTree(T);//先序遍历顺序建立二叉链表
+    InThreading(T); //不带头结点的中序线索化
+    InOrderTraverse_Thr(T); //遍历中序线索二叉树
+
     return 0;
 }
 */
@@ -33,7 +33,7 @@ int main()
 using namespace std;
 
 #define OK 1
-#define ERROR 0 
+#define ERROR 0
 typedef char TElemType;
 // 创建节点
 typedef struct BiThrNode{
@@ -57,7 +57,7 @@ void CreateBiThrTree(BiThrTree &T)
 }
 
 BiThrTree pre = NULL;
-//不带头结点的中序线索化 
+//不带头结点的中序线索化
 void InThreading(BiThrTree &T)
 {
     if(T)
@@ -78,18 +78,18 @@ void InThreading(BiThrTree &T)
     }
 }
 
-//遍历中序线索二叉树 
+//遍历中序线索二叉树
 void InOrderTraverse_Thr(BiThrTree &T)
 {
-    
+
 }
 
 int main()
 {
     BiThrTree T;
-    CreateBiThrTree(T);//先序遍历顺序建立二叉链表 
-    InThreading(T); //不带头结点的中序线索化 
-    InOrderTraverse_Thr(T); //遍历中序线索二叉树 
-        
+    CreateBiThrTree(T);//先序遍历顺序建立二叉链表
+    InThreading(T); //不带头结点的中序线索化
+    InOrderTraverse_Thr(T); //遍历中序线索二叉树
+
     return 0;
 }
