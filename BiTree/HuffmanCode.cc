@@ -2,7 +2,7 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 18:03:54
+ * @LastEditTime: 2021-11-08 18:16:34
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
  */
 
@@ -31,19 +31,20 @@ typedef struct HTNode{
  */
 void Select(HuffmanTree &HT, int len, int &s1, int &s2)
 {
-    s1 = s2 = 1;
+    s1 = s2 = 0;
     int min1, min2;
     min1 = min2 = 1000;
     for(int i=1; i<=len; i++)
     {
         if(HT[i].parent != 0) continue;
         int weight = HT[i].weight;
-        if(min2 > weight && min1 > weight){
+        // 最小的
+        if(min1 > weight && min2 > weight ){
             s1 = i;
             min2 = min1;
             min1 = weight;
         }
-        else if(min2 > weight && min1 < weight){
+        if(min1 < weight && min2 > weight){
             s2 = i;
             min2 = weight;
         }
