@@ -2,8 +2,15 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 17:46:50
+ * @LastEditTime: 2021-11-08 18:03:54
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
+ */
+
+/**
+ * @测试用例
+ * 8
+ * 5 29 7 8 14 23 3 11
+ *
  */
 
 #include<iostream>
@@ -22,30 +29,23 @@ typedef struct HTNode{
  * @param s1 返回最小的数组下标
  * @param s2 返回第二小的数组下标
  */
-void Select2MinHMTree(HuffmanTree &HT, int len, int s1, int s2)
+void Select(HuffmanTree &HT, int len, int &s1, int &s2)
 {
     s1 = s2 = 1;
     int min1, min2;
     min1 = min2 = 1000;
     for(int i=1; i<=len; i++)
     {
+        if(HT[i].parent != 0) continue;
         int weight = HT[i].weight;
-        if(HT[i].parent==0)
-        {
-            if(weight < min2)
-            {
-                if(weight > min1)
-                {
-                    s2 = i;
-                    min2 = weight;
-                }
-                if(weight <= min1)
-                {
-                    min1 = weight;
-                    s2 = s1;
-                    s1 = i;
-                }
-            }
+        if(min2 > weight && min1 > weight){
+            s1 = i;
+            min2 = min1;
+            min1 = weight;
+        }
+        else if(min2 > weight && min1 < weight){
+            s2 = i;
+            min2 = weight;
         }
     }
 }
@@ -62,9 +62,8 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
     if(n<=1) return ;
     int m = 2*n-1;
     HT = new HTNode[m+1];   // 不用0节点，多生成一个
-    for(int i=0; i<=m+1; i++)   // 所有节点初始化
+    for(int i=1; i<=m; i++)   // 所有节点初始化
     {
-        HT[i].weight=0;
         HT[i].parent=0;
         HT[i].lchild=0;
         HT[i].rchild=0;
@@ -77,7 +76,7 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
     int s1, s2;
     for(int i=n+1; i<=m; i++)
     {
-        Select2MinHMTree(HT, i-1, s1, s2);
+        Select(HT, i-1, s1, s2);
         // 2.2 设定值
         HT[s1].parent=i; HT[s2].parent=i;
         HT[i].lchild=s1; HT[i].rchild=s2;
@@ -88,7 +87,7 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
 void ShowHMTree(HuffmanTree &HT,int n)
 {
     // 遍历输出表的值
-    for(int i=0; i<=2*n+1; i++)
+    for(int i=1; i<=2*n-1; i++)
     {
         cout << "i=" << i << "\tWeight=" << HT[i].weight << "\tParent=" << HT[i].parent << "\tLeftChild=" <<HT[i].lchild << "\tRightChild=" << HT[i].rchild << endl;
     }
