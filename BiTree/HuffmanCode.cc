@@ -2,7 +2,7 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 18:32:22
+ * @LastEditTime: 2021-11-08 19:01:06
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
  */
 
@@ -42,9 +42,10 @@ void Select(HuffmanTree &HT, int len, int &s1, int &s2)
         if(min1 > weight && min2 > weight ){
             min2 = min1;
             min1 = weight;
+            s2 = s1;
             s1 = i;
         }
-        if(min1 < weight && min2 > weight){
+        if(min1 < weight && min2 > weight){ // 相同的权值29不会被选到min2，问题出在这
             min2 = weight;
             s2 = i;
         }
@@ -94,6 +95,7 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
         HT[s1].parent=i; HT[s2].parent=i;
         HT[i].lchild=s1; HT[i].rchild=s2;
         HT[i].weight = HT[s1].weight + HT[s2].weight;
+        cout << HT[s1].weight << " " << HT[s2].weight << endl;
         //ShowHMTree(HT, n);
     }
 }
@@ -105,7 +107,8 @@ int main()
     HuffmanTree HT;
     int n;
     cout << "叶子结点个数:";
-    cin >> n;
+    n=8;
+    //cin >> n;
     CreateHuffmanTree(HT, n);
     ShowHMTree(HT,n);
 }
