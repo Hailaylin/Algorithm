@@ -2,7 +2,7 @@
  * @Description:哈夫曼编码实现
  * @Author: HailayLin
  * @Date: 2021-11-08 10:26:16
- * @LastEditTime: 2021-11-08 18:16:34
+ * @LastEditTime: 2021-11-08 18:32:22
  * @FilePath: \Algorithm\BiTree\HuffmanCode.cc
  */
 
@@ -40,14 +40,23 @@ void Select(HuffmanTree &HT, int len, int &s1, int &s2)
         int weight = HT[i].weight;
         // 最小的
         if(min1 > weight && min2 > weight ){
-            s1 = i;
             min2 = min1;
             min1 = weight;
+            s1 = i;
         }
         if(min1 < weight && min2 > weight){
-            s2 = i;
             min2 = weight;
+            s2 = i;
         }
+    }
+}
+
+void ShowHMTree(HuffmanTree &HT,int n)
+{
+    // 遍历输出表的值
+    for(int i=1; i<=2*n-1; i++)
+    {
+        cout << "i=" << i << "\tWeight=" << HT[i].weight << "\tParent=" << HT[i].parent << "\tLeftChild=" <<HT[i].lchild << "\tRightChild=" << HT[i].rchild << endl;
     }
 }
 
@@ -63,8 +72,9 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
     if(n<=1) return ;
     int m = 2*n-1;
     HT = new HTNode[m+1];   // 不用0节点，多生成一个
-    for(int i=1; i<=m; i++)   // 所有节点初始化
+    for(int i=0; i<=m; i++)   // 所有节点初始化
     {
+        HT[i].weight=0;
         HT[i].parent=0;
         HT[i].lchild=0;
         HT[i].rchild=0;
@@ -72,6 +82,8 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
     cout << "顺序输入各叶子节点权重:";
     for(int i=1;i<=n;i++)
         cin >> HT[i].weight;
+
+    ShowHMTree(HT, n);
     // 2.创建树
     // 2.1 从森林中选择双亲为0且权值最小的两个树根节点并返回根节点在表中位置
     int s1, s2;
@@ -82,17 +94,11 @@ void CreateHuffmanTree(HuffmanTree &HT, int n)
         HT[s1].parent=i; HT[s2].parent=i;
         HT[i].lchild=s1; HT[i].rchild=s2;
         HT[i].weight = HT[s1].weight + HT[s2].weight;
+        //ShowHMTree(HT, n);
     }
 }
 
-void ShowHMTree(HuffmanTree &HT,int n)
-{
-    // 遍历输出表的值
-    for(int i=1; i<=2*n-1; i++)
-    {
-        cout << "i=" << i << "\tWeight=" << HT[i].weight << "\tParent=" << HT[i].parent << "\tLeftChild=" <<HT[i].lchild << "\tRightChild=" << HT[i].rchild << endl;
-    }
-}
+
 
 int main()
 {
