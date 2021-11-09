@@ -116,7 +116,7 @@ void Select(HuffmanTree &HT, int len, int &s1, int &s2)
     }
 }
 
-void CreateHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n)
+void CreatHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n)
 {
     HC = new char*[n+1];    // 字符指针数组HC
     char *cd = new char[n]; // 字符指针数组元素存的哈夫曼编码
@@ -196,10 +196,15 @@ void ShowHMCode(HuffmanTree HT, HuffmanCode HC, int n)
 int main()
 {
     HuffmanTree T;
+    HuffmanCode HC;
     int n;
     cin>>n;
     CreateHuffmanTree(T,n); //创建哈夫曼树
-    cout<<T[2*n-1].weight<<endl; //哈夫曼树根结点权值
+    CreatHuffmanCode(T,HC,n); //设计哈夫曼编码
+    for(int i=1;i<=n; i++)
+    {
+        cout<<T[i].weight<<"-->"<<HC[i]<<endl; //输出哈夫曼编码
+    }
 
     return 0;
 }
