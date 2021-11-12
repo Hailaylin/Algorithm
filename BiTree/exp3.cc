@@ -90,11 +90,11 @@ int NodeCount(BiTree &T)
 }
 
 // 叶子结点个数
-int LeaveNodeCount(BiTree &T)
+int LeafNode(BiTree &T)
 {
     if(T == NULL) return 0; // 树空返回0
     if(T->lchild == NULL && T->rchild == NULL) return 1; // 是叶子结点就+1
-    else return LeaveNodeCount(T->lchild)+LeaveNodeCount(T->rchild);
+    else return LeafNode(T->lchild)+LeafNode(T->rchild);
 }
 
 // 选择输出菜单
@@ -130,14 +130,7 @@ void SwitchShow(BiTree &T)
 int main()
 {
     BiTree T;
-    cout << "请输入前序遍历二叉树:";
-    CreateBiTree(T);//先序遍历顺序建立二叉链表
-    
-    SwitchShow(T);// 菜单输出前序、中序、后序遍历；
-
-    cout << "二叉树节点个数:" << NodeCount(T) << endl;
-    cout << "二叉树深度个数:" << Depth(T) << endl;
-    cout << "二叉树叶子结点个数:" << LeaveNodeCount(T) << endl;
-    
+    CreateBiTree(T); //先序遍历顺序创建二叉树 
+    cout<<LeafNode(T)<<endl; //统计二叉树的叶结点个数
     return 0;
 }
