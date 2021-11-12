@@ -2,7 +2,7 @@
  * @Description: 表达式求值
  * @Author: HailayLin
  * @Date: 2021-11-10 19:03:26
- * @LastEditTime: 2021-11-10 19:03:26
+ * @LastEditTime: 2021-11-12 16:49:06
  * @FilePath: \Algorithm\stack\S0508_Expestion.cc
  */
 /**
@@ -30,6 +30,10 @@ int main()
     return 0;
 }
 */
+#include<iostream>
+#include<string>
+#include<stack>
+using namespace std;
 
 #include<iostream>
 
