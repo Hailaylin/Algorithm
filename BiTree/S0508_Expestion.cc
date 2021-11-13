@@ -2,7 +2,7 @@
  * @Description: 表达式求值
  * @Author: HailayLin
  * @Date: 2021-11-10 19:03:26
- * @LastEditTime: 2021-11-13 20:54:25
+ * @LastEditTime: 2021-11-13 21:16:43
  * @FilePath: \Algorithm\BiTree\S0508_Expestion.cc
  */
 /**
@@ -32,6 +32,13 @@ int main()
 
 @Bug
 9*4-(1+1)#
+-+11*49
+-34
+
+正确
+9*4-(1+1)#
+-*94+11
+34
 */
 #include<iostream>
 #include<stack>
@@ -123,10 +130,10 @@ void InitExpTree(BiTree &T)
                 thetha = OPTR.top();
                 OPTR.pop();
                 
-                a = EXPT.top();
+                b = EXPT.top();
                 EXPT.pop();
 
-                b = EXPT.top();
+                a = EXPT.top();
                 EXPT.pop();
 
                 CreateExpTree(T, a, b, thetha);
