@@ -2,7 +2,7 @@
  * @Description: 表达式求值
  * @Author: HailayLin
  * @Date: 2021-11-10 19:03:26
- * @LastEditTime: 2021-11-13 20:41:37
+ * @LastEditTime: 2021-11-13 20:54:25
  * @FilePath: \Algorithm\BiTree\S0508_Expestion.cc
  */
 /**
@@ -29,6 +29,9 @@ int main()
     cout<<EvaluateExpTree(T)<<endl; //计算表达式的值
     return 0;
 }
+
+@Bug
+9*4-(1+1)#
 */
 #include<iostream>
 #include<stack>
@@ -97,6 +100,7 @@ void InitExpTree(BiTree &T)
     BiTree a, b;
     stack<BiTree> EXPT;    // 存放表达式
     stack<char> OPTR;   // 存放运算符
+    
     OPTR.push('#');
     cin >> ch;
     while(ch != '#' || OPTR.top() != '#')
@@ -118,10 +122,13 @@ void InitExpTree(BiTree &T)
             case '>':
                 thetha = OPTR.top();
                 OPTR.pop();
+                
                 a = EXPT.top();
                 EXPT.pop();
+
                 b = EXPT.top();
                 EXPT.pop();
+
                 CreateExpTree(T, a, b, thetha);
                 EXPT.push(T);
                 break;
@@ -159,7 +166,7 @@ int GetValue(char theta, int lvalue, int rvalue)
     case '/':
         return lvalue / rvalue;
     }
-    return '0';
+    return 0;
 }
 
 //计算表达式的值
@@ -181,7 +188,7 @@ int main()
 {
     BiTree T;
     InitExpTree(T); //先序遍历顺序创建二叉树
-    //PreOrderTraverse(T); cout<<endl; //先序遍历
+    PreOrderTraverse(T); cout<<endl; //先序遍历
     cout<<EvaluateExpTree(T)<<endl; //计算表达式的值
     return 0;
 }
