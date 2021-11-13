@@ -18,6 +18,7 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "system_error": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "random": "cpp"
     }
 }
