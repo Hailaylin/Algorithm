@@ -2,8 +2,8 @@
  * @Description: 邻接表建立图
  * @Author: HailayLin
  * @Date: 2021-11-07 14:36:20
- * @LastEditTime: 2021-11-07 14:49:16
- * @FilePath: \Algorithm\5_grath\0502_AdjacencyList.cpp
+ * @LastEditTime: 2021-11-15 11:09:41
+ * @FilePath: \Algorithm\6_grath\0602_AdjacencyList.cpp
  */
 
 #include<iostream>
@@ -39,7 +39,3 @@ typedef struct ALGraph{
     AdjList vertices;   // 表头节点表
 }
 
-int main()
-{
-
-}
