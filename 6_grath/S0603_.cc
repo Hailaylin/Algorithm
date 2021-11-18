@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: HailayLin
  * @Date: 2021-11-15 11:10:38
- * @LastEditTime: 2021-11-15 11:46:49
+ * @LastEditTime: 2021-11-15 11:51:17
  * @FilePath: \Algorithm\6_grath\S0603_.cc
  */
 
@@ -84,7 +84,7 @@ typedef struct ALGraph{
     int vexnum, arcnum; // 节点个数，边个数
 }ALGraph;
 
-bool visited[MVNum];
+bool visited[MVNum]={false};
 
 /**
  * @brief 定位节点在表头节点表的位置（数组下标）
