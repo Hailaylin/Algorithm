@@ -2,7 +2,7 @@
  * @Description:题目:无向图的深度优先搜索遍历（邻接矩阵）
  * @Author: HailayLin
  * @Date: 2021-11-09 19:59:00
- * @LastEditTime: 2021-11-09 20:16:31
+ * @LastEditTime: 2021-11-24 22:26:23
  * @FilePath: \Algorithm\6_grath\S0601_UDN_DFS_Mx.cc
  */
 
@@ -53,7 +53,7 @@ typedef int Status; // 返回状态
 #define OK 1
 #define ERROR 0
 
-/* 用邻接表存储网的结构体定义 */
+/* 用邻接矩阵存储网的结构体定义 */
 typedef struct AMGraph{
     // 顶点集
     VertexTpye vexs[MVNum];

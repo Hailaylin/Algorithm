@@ -62,6 +62,7 @@ void Select(HuffmanTree &HT, int len, int &s1, int &s2)
     }
 }
 
+
 void CreateHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n)
 {
     HC = new char*[n+1];    // 字符指针数组HC
