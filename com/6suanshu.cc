@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: HailayLin
  * @Date: 2021-11-28 20:00:24
- * @LastEditTime: 2021-11-28 20:04:57
+ * @LastEditTime: 2021-11-28 21:04:38
  * @FilePath: \com\6suanshu.cc
  */
 
 // python大数忘记怎么用了
 
-#include<bits\stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main()
