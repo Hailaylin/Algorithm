@@ -2,14 +2,14 @@
  * @Description: 
  * @Author: HailayLin
  * @Date: 2021-11-29 09:43:48
- * @LastEditTime: 2021-11-29 10:00:10
+ * @LastEditTime: 2021-12-06 16:17:30
  * @FilePath: \Algorithm\kaoshi\1erChaLianBiao.cc
  */
 #include<iostream>
 using namespace std;
 
 typedef struct BiNode{
-    int data;
+    char data;
     BiNode * lchild, * rchild;
 }BiNode, *BiTree;
 
@@ -17,9 +17,10 @@ void CreateBiTree(BiTree &T)
 {
     char ch;
     cin >> ch;
-    if(ch=='#') return;
+    if(ch=='#') T = NULL;
     else {
         // 赋值
+        T = new BiNode;
         T->data = ch;
         // 遍历创建
         CreateBiTree(T->lchild);
@@ -37,9 +38,24 @@ void PreOrderTraverse(BiTree T)
     }
 }
 
-void InOrderTraverse(BiTree )
+void InOrderTraverse(BiTree T)
 {
-    
+    if(T)
+    {
+        InOrderTraverse(T->lchild);
+        cout << T->data;
+        InOrderTraverse(T->rchild);
+    }
+}
+
+void PostOrderTraverse(BiTree T)
+{
+    if(T)
+    {
+        PostOrderTraverse(T->lchild);
+        PostOrderTraverse(T->rchild);
+        cout << T->data;
+    }
 }
 
 int main()
