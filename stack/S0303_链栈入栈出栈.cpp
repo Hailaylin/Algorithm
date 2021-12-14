@@ -122,7 +122,8 @@ SElemType GetTop(LinkStack &S)
 
 SElemType Pop(LinkStack &S)
 {
-    //1. 判断栈非空,因为main函数进行了操作，于是不进行；如果main函数没有判断就要加上
+    //1. 判断栈非空,因为main函数进行了操作，于是不进行；
+    // 如果main函数没有判断就要加上
     // if(S==NULL) return false
     //2. 指针p指向栈顶元素
     LinkStack p = S;
