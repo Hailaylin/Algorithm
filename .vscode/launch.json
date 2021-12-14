@@ -12,7 +12,7 @@
             "environment": [],
             "externalConsole": false,                           //终端复用
             "MIMode": "gdb",
-            "miDebuggerPath": "D:\\Apps\\Embarcadero_Dev-Cpp_6.3_TDM-GCC_9.2_Portable\\TDM-GCC-64\\bin\\gdb.exe",        //您的mingw64 gdb.exe目录
+            "miDebuggerPath": "C:\\TDM-GCC-64\\bin\\gdb.exe",        //您的mingw64 gdb.exe目录
             "preLaunchTask": "compile",                                 //和task.json的lable要保持一致
             "setupCommands": [
                 {
