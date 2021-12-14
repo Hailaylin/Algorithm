@@ -1,3 +1,10 @@
+/*
+ * @Description:
+ * @Author: HailayLin
+ * @Date: 2021-12-14 17:13:09
+ * @LastEditTime: 2021-12-14 20:10:36
+ * @FilePath: \Algorithm\03 SingleList.cpp
+ */
 /**
 Beijing Tianjin Shanghai Chongqing Tangshan
 */
@@ -19,21 +26,21 @@ typedef struct LNode {
 
 Status InitList(LinkList &L) {
 	L = new LNode;
-	Lnext = NULL;
+	L->next = NULL;
 	return OK;
 }
 
 Status showList(LinkList L) {
-	if(Lnext == NULL) {
+	if(L->next == NULL) {
 		cout << "empty!" << endl;
 		return ERROR;
 	}
 	else {
-		LinkList p = Lnext;
+		LinkList p = L->next;
 		int i = 1;
 		while (p != NULL) {
-			cout << i++ << ":" << pdata << endl;
-			p = pnext;
+			cout << i++ << ":" << p->data << endl;
+			p = p->next;
 		}
 	}
 	return OK;
@@ -47,9 +54,9 @@ Status CreateList_R(LinkList &L, int num) {
 		cin >> str;
 		//cout << str << endl;
 		LNode *s = new LNode;
-		sdata = str;
-		snext = NULL;
-		pnext = s;
+		s->data = str;
+		s->next = NULL;
+		p->next = s;
 		p = s;
 	}
 	return OK;

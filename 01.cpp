@@ -3,7 +3,7 @@
 
  * @Author: HailayLin
  * @Date: 2021-12-14 17:13:09
- * @LastEditTime: 2021-12-14 20:04:09
+ * @LastEditTime: 2021-12-14 20:07:33
  * @FilePath: \Algorithm\01.cpp
  */
 /*
@@ -61,6 +61,7 @@ void Show(BiTree T) {
 	cout << endl;
 }
 
+// // 自己考试的时候写的
 // int LeafNode(BiTree &T) {
 // 	if (T->lchild->data == '#' && T->rchild->data == '#') {
 // 		return 1;	// BUG 对树空的判断有误，要用空指针判断；
