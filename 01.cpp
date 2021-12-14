@@ -3,7 +3,7 @@
 
  * @Author: HailayLin
  * @Date: 2021-12-14 17:13:09
- * @LastEditTime: 2021-12-14 17:15:14
+ * @LastEditTime: 2021-12-14 20:04:09
  * @FilePath: \Algorithm\01.cpp
  */
 /*
@@ -30,15 +30,8 @@ ABC##D##
 2
 */
 
-
-#include<iostream>
-#include<string>
 #include<bits/stdc++.h>
 using namespace std;
-
-typedef int Status;
-#define OK 1
-#define ERROE 0
 
 typedef struct BiNode {
 	char data;
@@ -68,10 +61,10 @@ void Show(BiTree T) {
 	cout << endl;
 }
 
-// int LeafNode(BiTree T) {
+// int LeafNode(BiTree &T) {
 // 	if (T->lchild->data == '#' && T->rchild->data == '#') {
-// 		return 1;
-// 	}
+// 		return 1;	// BUG 对树空的判断有误，要用空指针判断；
+// 	}				// BUG 递归理解不深；生成的树理解不深
 // 	else if (T == NULL) return 0;
 // 	else {
 // 		return (LeafNode(T->lchild) + LeafNode(T->rchild));
