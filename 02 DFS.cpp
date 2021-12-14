@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @Author: HailayLin
+ * @Date: 2021-12-14 17:13:09
+ * @LastEditTime: 2021-12-14 20:32:19
+ * @FilePath: \Algorithm\02 DFS.cpp
+ */
 /* 2 1
 
 5 4
@@ -36,6 +43,11 @@ int LocateVex(AMGraph G,const VerTexType &vex) {
 
 Status CreateUDN(AMGraph &G) {	
 	cin >> G.vexnum >> G.arcnum;
+	// input vex
+	for (int i = 0 ; i < G.vexnum; i++) {
+		cin >> G.vexs[i];	
+	}
+
 	// init arcs
 	for (int i = 0; i < G.arcnum ; i++) {
 		for (int j = 0; j < G.arcnum; j++) {
@@ -43,14 +55,10 @@ Status CreateUDN(AMGraph &G) {
 		}
 	}
 	
-	// input vex
-	for (int i = 0 ; i < G.vexnum; i++) {
-		cin >> G.vexs[i];
-	}
-	
 	// input arc
 	for (int i = 0; i < G.arcnum; i++) {
-		char vex1, vex2, weight;
+		VerTexType vex1, vex2;
+		int weight;
 		cin >> vex1 >> vex2 >> weight;
 		int cow = LocateVex(G, vex1);
 		int column = LocateVex(G, vex2);
@@ -60,9 +68,9 @@ Status CreateUDN(AMGraph &G) {
 }
 
 void show(AMGraph G) {
-	for (int i = 0 ; i < G.arcnum; i++) {
-		for (int j = 0; j < G.arcnum; j++) {
-			cout << G.arcs[i][j];
+	for (int i = 0; i < G.vexnum; i++) {
+		for (int j = 0; j < G.vexnum; j++) {
+			cout << G.arcs[i][j] << "\t";
 		}
 		cout << endl;
 	}
@@ -70,32 +78,19 @@ void show(AMGraph G) {
 
 bool visited[MXNum];
 Status DFS_AM(AMGraph G, int v) {
-	if (visited[v] == true) {
-		return OK;
+	cout << G.vexs[v];
+	visited[v] = true;
+	for(int w = 0; w < G.arcnum; w++) {
+		if (G.arcs[v][w]!=MaxInt && visited[w] == false) {
+			DFS_AM(G, w);	
+		}
 	}
-	else {
-		// v is the vex1; w is to way the vex2
-		for(int w = 0; w < G.arcnum; w++) {
-			if(G.arcs[v][w] != MXNum) {
-				cout << G.vexs[v] 
-					 << G.vexs[w] 
-					 << " " 
-					 << G.arcs[v][w] 
-					 << endl;
-				visited[v] = true;
-				DFS_AM(G, w);
-			}
-		}	
-	}
-	return OK;
 }
-
-
 
 int main() {
 	AMGraph G;
 	CreateUDN(G);  //创建无向图的邻接矩阵 
-	show(G);
+	//show(G);
 	DFS_AM(G,0); //深度优先搜索遍历图 
 	cout<<endl;
 	for(int i=0;i<G.vexnum;i++) visited[i]=0;
