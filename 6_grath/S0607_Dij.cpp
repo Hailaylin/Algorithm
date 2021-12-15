@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: HailayLin
  * @Date: 2021-12-15 10:03:27
- * @LastEditTime: 2021-12-15 11:10:34
+ * @LastEditTime: 2021-12-15 13:59:31
  * @FilePath: \Algorithm\6_grath\S0607_Dij.cpp
  */
 /*
@@ -109,7 +109,8 @@ Status CreateUDN(AMGraph &G)
         cin >> v1 >> v2 >> weight;
         int i = LocateVex(G,v1);
         int j = LocateVex(G,v2);
-        G.arcs[j][i] = G.arcs[i][j] = weight;
+        //G.arcs[j][i] =    // 要求有向图 
+        G.arcs[i][j] = weight;
     }
 
     return 0;
@@ -120,31 +121,38 @@ Status CreateUDN(AMGraph &G)
  */
 Status ShowUDN(AMGraph &G)
 {
-    for(int i=0; i<G.vexnum; i++)
-    {
+    for(int i=0; i<G.vexnum; i++) {
         for(int j=0; j<G.vexnum; j++)
-            cout << G.arcs[i][j] << "\t";
+            if (G.arcs[i][j] == MaxInt) {
+                cout << "∞\t";
+            }
+            else {
+                cout << G.arcs[i][j] << "\t";
+            }
         cout << endl;
     }
     return OK;
 }
 
+void DisplayPath(AMGraph G , int begin ,int temp );
+
+// 记录当前节点与v0路径是否已是最短路径
+bool isShort[MVNum] = {false};
+// 当前最短路径前驱，初始值为-1, v0=-1
+int prePath[MVNum];
+// 当前最短路径长度
+int ShortDis[MVNum] = {MaxInt};
 void ShortestPath_DIJ(AMGraph &G, int v0) {
     /* ---- 初始化顶点、边与中间过程集合 --- */
-    // 记录当前节点与v0路径是否已是最短路径
-    bool isShort[G.vexnum] = {false};
-    // 当前最短路径前驱，初始值为-1
-    int prePath[G.vexnum] = {-1};
-    // 当前最短路径长度
-    int ShortDis[G.vexnum] = {MaxInt};
-    #define D ShortDis;
+
     int v = 0;
     int n = G.vexnum;
     for(v = 0; v < n; v++) {
+        isShort[v] = false;
         // 初始化v0到各顶点弧值为最小值
         ShortDis[v] = G.arcs[v0][v];
         // 如果顶点v0-v有边，就把直接前驱设置成v0，否则-1
-        if (ShortDis[v] != MaxInt) {
+        if (ShortDis[v] < MaxInt) {
             prePath[v] = v0;
         }
         else {
@@ -158,13 +166,12 @@ void ShortestPath_DIJ(AMGraph &G, int v0) {
     for (int i = 1; i < n; i++) {
         // 标记 min 找v0到v[w]点的最小弧，记下v=w,并标记v点已为最小弧
         int min = MaxInt;
-        for (int w = 0; w < n; w++) {
+        for (int w = 0; w < n; w++)
             if (isShort[w] == false && ShortDis[w] < min) {
                 v = w;
                 min = ShortDis[w];
             }
-        }
-        isShort[v] == true;
+        isShort[v] = true;
         // 从w出发更新各顶点的最短路径值
         for (int w = 0; w < n; w++) {
             if (isShort[w]==false && ShortDis[v]+G.arcs[v][w] < ShortDis[w]) {
@@ -174,19 +181,36 @@ void ShortestPath_DIJ(AMGraph &G, int v0) {
         }
     }
     
-    /* --- 输出各点到源点的最短路径和长度 --- */
-    for (int i = 1; i < n; i++) {
-        int u = i;
-        int dis = 0;
-        while(prePath[u] != -1 && u != 0) {
-            printf(" -> prePath[%d]=%d", u, prePath[u]);
-            dis = ShortDis[u];
-            u = prePath[u];
-        }
-        printf(" dis=%d\n", dis);
+    // /* --- 输出各点到源点的最短路径和长度 --- */
+    // for (int i = 1; i < n; i++) {
+    //     int u = i;
+    //     int dis = 0;
+    //     while(prePath[u] != -1) {
+    //         printf(" -> prePath[%d]=%d", u, prePath[u]);
+    //         dis = ShortDis[u];
+    //         u = prePath[u];
+    //     }
+    //     printf(" dis=%d\n", dis);
+    // }
+    // printf("\n");
+    for (size_t i = 0; i < n; i++)
+    {
+        cout << "A" << G.vexs[i] <<  ":";
+        if (ShortDis[i] == MaxInt) cout << -1 << endl;
+        else cout << ShortDis[i] << endl;
+        DisplayPath(G, 0, i);
+        cout << G.vexs[i] << endl;
     }
-    printf("\n");
+    
 }
+
+void DisplayPath(AMGraph G , int begin ,int temp ){
+	//显示最短路
+	if(prePath[temp] != -1){
+		DisplayPath(G , begin ,prePath[temp]);
+		cout << G.vexs[prePath[temp]] << "-->";
+	}
+}//DisplayPath
 
 int main()
 {
